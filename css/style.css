@@ -215,6 +215,12 @@ footer i {
   font-size: 3rem;
   color: rgb(180, 179, 179);
 }
+footer span {
+  display: inline-block;
+  font-size: 1rem;
+  color: rgb(180, 179, 179);
+  margin-right: 15px;
+}
 .fondoblanchedalmond{
   font-size: 3rem;
   background-color: rgba(255, 255, 255, 0);
