@@ -43,13 +43,6 @@ span {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /*   background: linear-gradient(
-    153deg,
-    rgba(0, 0, 0, 1) 44%,
-    rgba(61, 91, 101, 1) 71%,
-    rgba(88, 207, 194, 1) 89%,
-    rgba(0, 237, 255, 1) 100%
-  ); */
   background: linear-gradient(
     104deg,
     rgba(59, 176, 100, 1) 24%,
@@ -57,7 +50,7 @@ span {
     rgba(117, 162, 157, 1) 81%,
     rgba(0, 237, 255, 1) 100%
   );
-  padding-bottom: 100px;
+  padding-bottom: 50px;
 }
 .reglasVentana   {
   position: absolute;
@@ -186,7 +179,7 @@ span {
   display: flex;
   align-self: flex-end;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(10, 10, 10, 0.4);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);

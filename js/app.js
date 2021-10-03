@@ -28,7 +28,13 @@ const player1 = new Player(true, 0, $ficha1),
 const pedirNombre = () => {
     player1.name = prompt(`Ingrese el nombre del primer jugador`)
     player2.name = prompt("Ingrese el nombre del segundo jugador")
-    cambiarNombres()
+    if ((player1.name === "" || player1.name == null || player1.name == undefined)||(player2.name === "" || player2.name == null || player2.name == undefined)) {
+        alert(`ERROR! :'(  a ingresado mal alguno de los nombres. Por favor ingrese nuevamente los nombres de los jugadores`)
+        pedirNombre()
+    }else{
+        cambiarNombres()
+    }
+    
 }
 //Cambiar los nombre de los players en html
 const cambiarNombres = () => {
