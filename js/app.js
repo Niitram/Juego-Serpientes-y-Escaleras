@@ -6,6 +6,11 @@ const $nombreJugador2 = document.getElementById("nombreJugador2");
 const $casilleros = document.querySelectorAll("div.casillero");
 const $dado = document.querySelector('#dado');
 const $dadoPantalla = document.querySelector('#dadoPantalla')
+const $ganador = document.querySelector('.ganador')
+const $ganadorMensaje = document.querySelector('.ganador__mensaje')
+const $btnReglas = document.querySelector('#btnReglas')
+const $reglasVentana = document.querySelector('.reglasVentana')
+const $btnReglasVentana = document.querySelector('#btnReglasVentana')
 
 class Player {
     constructor(turno, casillero, ficha, nombre) {
@@ -66,12 +71,9 @@ const casilleroProximo = (player, dado) => {
     }
     return player.casillero = player.casillero + dado;
 }
-//arreglo que contiene las imagenes de los numeros
-
 //pantallaAleatoria
 const pantallaAleatoria = () => {
-    setTimeout(() => {
-        console.log('Random pic')
+    setTimeout(() => {  
         $dadoPantalla.setAttribute("src", `img/snake.png`);
     }, 0);
     setTimeout(() => {
@@ -170,6 +172,14 @@ const turnoActual = (elemento, pixeles = 1, color, size) => {
     elemento.style.backgroundColor = `${color}`
     elemento.style.transform = `scale(${size})`
 };
+//Pinta en pantalla al gandor
+const mostrarGanador =(player)=>{
+    if (player.casillero == 100) {
+        $ganadorMensaje.textContent= `felicidades ganador ${player.name}!!!`
+        $ganador.style.zIndex = "99999";
+        $ganador.style.transform = "scale(1.3)";
+    }
+}
 //Aplicar clase
 const agregarClase = (elemento, clase) => {
     elemento.classList.toggle(`${clase}`)
@@ -179,6 +189,7 @@ const agregarClase = (elemento, clase) => {
 /* funciones que ejecuta el player 1 */
 const juegaPlayer1 = () => {
     turnoActual($nombreJugador1, 3, 'rgba(255, 0, 0, 0.192)', 1.3)
+
     dado()
     casilleroProximo(player1, valorDado)
     pantallaAleatoria()
@@ -186,10 +197,8 @@ const juegaPlayer1 = () => {
         moverFichaPosicion(player1)
         let casilleroSubida = casillerosSuben(player1)
         let casillerosQueBajan = casillerosBajan(player1)
-        console.log(`player1: despues ${player1.casillero}`)
         if (player1.casillero === casilleroSubida || player1.casillero === casillerosQueBajan) {
             setTimeout(() => {
-                console.log("desde adentro")
                 moverFichaPosicion(player1)
             }, 2000)
         }
@@ -201,6 +210,7 @@ const juegaPlayer1 = () => {
     $ficha1.addEventListener("transitionend", () => {
         turnoActual($nombreJugador2, 3, 'rgba(21, 255, 0, 0.192)', 1.3)
         turnoActual($nombreJugador1, 0, 'rgba(255, 255, 255, 0)', 0.8)
+        mostrarGanador(player1)
     });
 }
 /* funciones que ejecuta el player 2 */
@@ -210,21 +220,18 @@ const juegaPlayer2 = () => {
     pantallaAleatoria()
     setTimeout(() => {
         moverFichaPosicion(player2)
-        console.log(`player2: ${player2.casillero}`)
         let casilleroSubida = casillerosSuben(player2)
         let casillerosQueBajan = casillerosBajan(player2)
-        console.log(`player2: despues ${player2.casillero}`)
         if (player2.casillero === casilleroSubida || player2.casillero === casillerosQueBajan) {
             setTimeout(() => {
-                console.log("desde adentro")
                 moverFichaPosicion(player2)
             }, 2000)
         }
         $ficha2.addEventListener("transitionend", () => {
             turnoActual($nombreJugador1, 3, 'rgba(255, 0, 0, 0.192)', 1.3)
             turnoActual($nombreJugador2, 0, 'rgba(255, 255, 255, 0)', .8)
+            mostrarGanador(player2)
         });
-        console.log(`player2 despues del interval: ${player2.casillero}`)
         player2.turno = false;
         player1.turno = true;
         $dado.removeEventListener('click', juegaPlayer2)
@@ -233,7 +240,12 @@ const juegaPlayer2 = () => {
 }
 /* EMPIEZA EJECUCION DE FUNCIONES */
 $dado.addEventListener('click', juegaPlayer1)
-
+$btnReglas.addEventListener('click', ()=>{
+    $reglasVentana.style.display = 'block'
+})
+$btnReglasVentana.addEventListener('click', ()=>{
+    $reglasVentana.style.display = 'none'
+})
 window.onload = function () {
     pedirNombre();
 

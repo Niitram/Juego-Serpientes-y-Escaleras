@@ -22,6 +22,14 @@
 
 <body>
     <div class="contenedor">
+        <div class="reglasVentana">
+            <div class="reglasVentana__cruz"><button id="btnReglasVentana"><i class="far fa-times-circle"></i></button></div>
+            <div class="reglasVentana__texto">
+                <span>Ambos jugadores jugaran con el dado iran avanzando por el tablero, el primero en llegar a la <img src="img/star-yellow.png" alt="estrella"> en el casillero Nº100 ganara!</span>
+                <span>Quien caiga en la base de una <img src="img/escalera.png" alt="escalera"> subira por ella</span>
+                <span>Cuidado! Porque al caer en la cabeza de una <img src="img/snake.png" alt="serpiente"> bajaras hasta el casillero que este la punta de su cola</span>
+            </div>
+        </div>
         <div class="contenedor__h1">
             <h1>Serpientes y Escaleras</h1>
         </div>
@@ -30,7 +38,7 @@
                 <p>Llega al final sin pisar las cabezas ni las colas de las serpientes y consigue la estrella!</p>
             </div>
             <div class="contenedor__reglas">
-                <a href=""><i class="fas fa-question-circle"></i></a>
+                <button id="btnReglas" ><i class="fas fa-question-circle"></i></button>
             </div>
         </div>
         <div class="contenedor__jugadores">
@@ -42,6 +50,13 @@
             <span class="color-yellowgreen" id="nombreJugador2"><i class="fas fa-crow"></i>Jugador2</span>
         </div>
         <div id="tablero" class="tablero">
+            <div class="ganador">
+                <div class="ganador__festejo">
+                    <img src="img/fuego-artificial-2.gif" alt="fuegos artificiales">
+                    <img src="img/fuegos-artificiales-1.gif" alt="fuegos artificiales">
+                </div>
+                <div class="ganador__mensaje"></div>
+            </div>
             <div class="contenedor__casilleros">
                 <div id="100" class="casillero"></div>
                 <div id="99" class="casillero"></div>
