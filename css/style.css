@@ -1,0 +1,221 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --Gemunu-Libre: "Gemunu Libre", sans-serif;
+  --Inconsolata: "Inconsolata", monospace;
+}
+/* ------------Fuentes-------------- */
+
+@font-face {
+  font-family: kbreindeergames;
+  src: url('../fuentes/kbreindeergames.ttf');
+}
+@font-face {
+  font-family: Endgame;
+  src: url('../fuentes/Endgame.otf');
+}
+a {
+  text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: Endgame, var(--Gemunu-Libre);
+  color: rgb(52, 207, 13);
+}
+p,
+span {
+  font-family: kbreindeergames,var(--Inconsolata);
+  line-height: 1.8rem;
+  word-spacing: 5px;
+  letter-spacing: 1px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+}
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+/*   background: linear-gradient(
+    153deg,
+    rgba(0, 0, 0, 1) 44%,
+    rgba(61, 91, 101, 1) 71%,
+    rgba(88, 207, 194, 1) 89%,
+    rgba(0, 237, 255, 1) 100%
+  ); */
+  background: linear-gradient(104deg, rgba(59,176,100,1) 24%, rgba(61,91,101,1) 60%, rgba(117,162,157,1) 81%, rgba(0,237,255,1) 100%);
+  padding-bottom: 100px;
+}
+.contenedor__h1 {
+  letter-spacing: 3px;
+  padding: 50px 10px;
+  margin: 50px 0;
+  font-size: 2.4rem;
+  background: rgba(255, 255, 255, 0.198);
+  box-shadow: 0 8px 32px 0 rgba(241, 241, 241, 0.37);
+  backdrop-filter: blur( 3px );
+  -webkit-backdrop-filter: blur( 3px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.contenedor__h1>h1{
+  background: linear-gradient(
+    180deg, rgb(1, 37, 10) 55%,
+  rgba(63, 189, 5, 0.349) 97%,
+  rgba(117,162,157,1) 100%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+.contenedor__instrucciones {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  margin-bottom: 50px;
+  
+  
+
+}
+.contenedor__parrafo {
+  max-width: 500px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.198);
+  box-shadow: 0 8px 32px 0 rgba(241, 241, 241, 0.37);
+  backdrop-filter: blur( 3px );
+  -webkit-backdrop-filter: blur( 3px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.contenedor__reglas a {
+  font-size: 3rem;
+  padding: 20px;
+  color: springgreen;
+  background: rgba(255, 255, 255, 0.198);
+  box-shadow: 0 8px 32px 0 rgba(241, 241, 241, 0.37);
+  backdrop-filter: blur( 3px );
+  -webkit-backdrop-filter: blur( 3px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.contenedor__jugadores {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 700px;
+  padding: 30px 0 10px 0;
+  background: rgba(255, 255, 255, 0.198);
+  box-shadow: 0 8px 32px 0 rgba(241, 241, 241, 0.37);
+  backdrop-filter: blur( 3px );
+  -webkit-backdrop-filter: blur( 3px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+.contenedor__jugadores span {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+.contenedor__jugadores span i {
+  padding: 10px;
+  font-size: 1.8rem;
+}
+.contenedor__dado {
+  display: flex;
+  align-self: flex-end;
+  border: violet 2px solid;
+}
+.dado__pantalla{
+  height: 50px;
+  width: 50px;
+}
+.dado__pantalla>img{
+  height: 100%;
+  width: 100%;
+
+}
+.contenedor__dado>button {
+  font-size: 2rem;
+}
+.tablero {
+  position: relative;
+  height: 600px;
+  width: 600px;
+  box-shadow: 3px 3px 31px 8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 3px 3px 31px 8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 3px 31px 8px rgba(0, 0, 0, 0.75);
+}
+.contenedor__casilleros {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 200;
+}
+.casillero {
+  height: 60px;
+  width: 60px;
+}
+
+.imgTablero {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.ficha1,
+.ficha2 {
+  position: absolute;
+  z-index: 100;
+  padding: 3px;
+  margin-left: 5px;
+  border: blanchedalmond solid 2px;
+  border-radius: 5px;
+  background-color: black;
+  transform: translate(-60px, 540px);
+  transition: transform 2s ease-in-out;
+}
+.ficha1 {
+  margin-top: 30px;
+}
+.color-red {
+  color: red;
+}
+.color-yellowgreen {
+  color: yellowgreen;
+}
+.border-verde {
+  border: rgb(0, 255, 21) solid 3px;
+  background-color: rgba(0, 255, 21, 0.274);
+}
+.border-rojo {
+  border: rgb(255, 0, 0) solid 3px;
+  background-color: rgba(255, 0, 0, 0.274);
+}
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 94%,
+    rgba(42, 40, 40, 0.623) 100%
+  );
+}
+footer i {
+  font-size: 3rem;
+  color: rgb(180, 179, 179);
+}
+.fondoblanchedalmond{
+  font-size: 3rem;
+  background-color: rgba(255, 255, 255, 0);
+}

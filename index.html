@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- import icons -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- import font-family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@300;600;800&family=Inconsolata:wght@300;600;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Serpientes y Escaleras</title>
+</head>
+
+<body>
+    <div class="contenedor">
+        <div class="contenedor__h1">
+            <h1>Serpientes y Escaleras</h1>
+        </div>
+        <div class="contenedor__instrucciones">
+            <div class="contenedor__parrafo">
+                <p>Llega al final sin pisar las cabezas ni las colas de las serpientes y consigue la estrella!</p>
+            </div>
+            <div class="contenedor__reglas">
+                <a href=""><i class="fas fa-question-circle"></i></a>
+            </div>
+        </div>
+        <div class="contenedor__jugadores">
+            <span class="color-red" id="nombreJugador1"><i class="fas fa-frog"></i>Jugador1</span>
+            <div class="contenedor__dado">
+                <div class="dado__pantalla"><img id="dadoPantalla" src="img/signo-pregunta.png" alt=""></div>
+                <button  id="dado"><i class="fas fa-dice"></i></button>
+            </div>
+            <span class="color-yellowgreen" id="nombreJugador2"><i class="fas fa-crow"></i>Jugador2</span>
+        </div>
+        <div id="tablero" class="tablero">
+            <div class="contenedor__casilleros">
+                <div id="100" class="casillero"></div>
+                <div id="99" class="casillero"></div>
+                <div id="98" class="casillero border-rojo"></div>
+                <div id="97" class="casillero"></div>
+                <div id="96" class="casillero"></div>
+                <div id="95" class="casillero border-rojo"></div>
+                <div id="94" class="casillero"></div>
+                <div id="93" class="casillero border-rojo"></div>
+                <div id="92" class="casillero"></div>
+                <div id="91" class="casillero"></div>
+                <div id="81" class="casillero"></div>
+                <div id="82" class="casillero"></div>
+                <div id="83" class="casillero"></div>
+                <div id="84" class="casillero"></div>
+                <div id="85" class="casillero"></div>
+                <div id="86" class="casillero"></div>
+                <div id="87" class="casillero border-rojo"></div>
+                <div id="88" class="casillero"></div>
+                <div id="89" class="casillero"></div>
+                <div id="90" class="casillero"></div>
+                <div id="80" class="casillero border-verde"></div>
+                <div id="79" class="casillero"></div>
+                <div id="78" class="casillero"></div>
+                <div id="77" class="casillero"></div>
+                <div id="76" class="casillero"></div>
+                <div id="75" class="casillero"></div>
+                <div id="74" class="casillero"></div>
+                <div id="73" class="casillero"></div>
+                <div id="72" class="casillero border-verde"></div>
+                <div id="71" class="casillero"></div>
+                <div id="61" class="casillero"></div>
+                <div id="62" class="casillero border-rojo"></div>
+                <div id="63" class="casillero"></div>
+                <div id="64" class="casillero border-rojo"></div>
+                <div id="65" class="casillero"></div>
+                <div id="66" class="casillero"></div>
+                <div id="67" class="casillero"></div>
+                <div id="68" class="casillero"></div>
+                <div id="69" class="casillero"></div>
+                <div id="70" class="casillero"></div>
+                <div id="60" class="casillero"></div>
+                <div id="59" class="casillero"></div>
+                <div id="58" class="casillero"></div>
+                <div id="57" class="casillero"></div>
+                <div id="56" class="casillero"></div>
+                <div id="55" class="casillero"></div>
+                <div id="54" class="casillero border-rojo"></div>
+                <div id="53" class="casillero"></div>
+                <div id="52" class="casillero"></div>
+                <div id="51" class="casillero border-verde"></div>
+                <div id="41" class="casillero"></div>
+                <div id="42" class="casillero"></div>
+                <div id="43" class="casillero"></div>
+                <div id="44" class="casillero"></div>
+                <div id="45" class="casillero"></div>
+                <div id="46" class="casillero"></div>
+                <div id="47" class="casillero"></div>
+                <div id="48" class="casillero"></div>
+                <div id="49" class="casillero"></div>
+                <div id="50" class="casillero"></div>
+                <div id="40" class="casillero"></div>
+                <div id="39" class="casillero"></div>
+                <div id="38" class="casillero"></div>
+                <div id="37" class="casillero"></div>
+                <div id="36" class="casillero"></div>
+                <div id="35" class="casillero"></div>
+                <div id="34" class="casillero"></div>
+                <div id="33" class="casillero"></div>
+                <div id="32" class="casillero"></div>
+                <div id="31" class="casillero"></div>
+                <div id="21" class="casillero border-verde"></div>
+                <div id="22" class="casillero"></div>
+                <div id="23" class="casillero"></div>
+                <div id="24" class="casillero"></div>
+                <div id="25" class="casillero"></div>
+                <div id="26" class="casillero"></div>
+                <div id="27" class="casillero"></div>
+                <div id="28" class="casillero border-verde"></div>
+                <div id="29" class="casillero"></div>
+                <div id="30" class="casillero"></div>
+                <div id="20" class="casillero"></div>
+                <div id="19" class="casillero"></div>
+                <div id="18" class="casillero"></div>
+                <div id="17" class="casillero border-rojo"></div>
+                <div id="16" class="casillero"></div>
+                <div id="15" class="casillero"></div>
+                <div id="14" class="casillero"></div>
+                <div id="13" class="casillero"></div>
+                <div id="12" class="casillero"></div>
+                <div id="11" class="casillero"></div>
+                <div id="1" class="casillero border-verde"></div>
+                <div id="2" class="casillero"></div>
+                <div id="3" class="casillero"></div>
+                <div id="4" class="casillero border-verde"></div>
+                <div id="5" class="casillero"></div>
+                <div id="6" class="casillero"></div>
+                <div id="7" class="casillero"></div>
+                <div id="8" class="casillero"></div>
+                <div id="9" class="casillero border-verde"></div>
+                <div id="10" class="casillero"></div>
+            </div>
+            <span class="ficha1 color-red" id="ficha1"><i class="fas fa-frog"></i></span>
+            <span class="ficha2 color-yellowgreen" id="ficha2"><i class="fas fa-crow"></i></span>
+            <img class="imgTablero" src="img/tablero-juego-serpientes-y-escaleras.jpg"
+                alt="tablero juego serpientes y escaleras">
+        </div>
+    </div>
+    <footer>
+        <div>
+            <span>creador por <a href="https://github.com/Niitram" target="_blank"><i
+                        class="fab fa-github-square"></i></a></span>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
