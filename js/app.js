@@ -11,30 +11,30 @@ const $ganadorMensaje = document.querySelector('.ganador__mensaje')
 const $btnReglas = document.querySelector('#btnReglas')
 const $reglasVentana = document.querySelector('.reglasVentana')
 const $btnReglasVentana = document.querySelector('#btnReglasVentana')
-
 class Player {
-    constructor(turno, casillero, ficha, nombre) {
-        this.turno = turno;
-        this.casillero = casillero;
-        this.ficha = ficha;
-        this.nombre = nombre;
+    constructor(turno, casillero, ficha, name, nameEnPantalla) {
+        this.turno = turno,
+        this.casillero = casillero,
+        this.ficha = ficha,
+        this.name = name,
+        this.nameEnPantalla = nameEnPantalla
     };
 };
 
 
-const player1 = new Player(true, 0, $ficha1),
-    player2 = new Player(false, 0, $ficha2);
+const player1 = new Player(true, 0, $ficha1, $nombreJugador1),
+    player2 = new Player(false, 0, $ficha2, $nombreJugador2);
 //Pide los nombres de los jugadores
 const pedirNombre = () => {
     player1.name = prompt(`Ingrese el nombre del primer jugador`)
     player2.name = prompt("Ingrese el nombre del segundo jugador")
-    if ((player1.name === "" || player1.name == null || player1.name == undefined)||(player2.name === "" || player2.name == null || player2.name == undefined)) {
+    if ((player1.name === "" || player1.name == null || player1.name == undefined) || (player2.name === "" || player2.name == null || player2.name == undefined)) {
         alert(`ERROR! :'(  a ingresado mal alguno de los nombres. Por favor ingrese nuevamente los nombres de los jugadores`)
         pedirNombre()
-    }else{
+    } else {
         cambiarNombres()
     }
-    
+
 }
 //Cambiar los nombre de los players en html
 const cambiarNombres = () => {
@@ -53,8 +53,8 @@ const getPositionX = (objeto) => {
 const positionXCasillero = (player) => {
     $casilleros.forEach(element => {
         if (element.id === `${player.casillero}`) {
+            /* return element.offsetLeft; */
             return posicionXDelCasillero = getPositionX(element)
-
         }
     });
 }
@@ -62,6 +62,7 @@ const positionXCasillero = (player) => {
 const positionYCasillero = (player) => {
     $casilleros.forEach(element => {
         if (element.id === `${player.casillero}`) {
+            /* return element.offsetTop; */
             return posicionYDelCasillero = getPositionY(element)
         }
     });
@@ -72,40 +73,41 @@ const dado = () => {
 };
 //calcula y devuelve cual casillero le toca
 const casilleroProximo = (player, dado) => {
-    if (player.casillero >= 100) {
+    if ((player.casillero + dado) >= 100) {
         return player.casillero = 100
+    }else{
+        return player.casillero = player.casillero + dado;
     }
-    return player.casillero = player.casillero + dado;
 }
 //pantallaAleatoria
 const pantallaAleatoria = () => {
-    setTimeout(() => {  
+    setTimeout(() => {
         $dadoPantalla.setAttribute("src", `img/snake.png`);
     }, 0);
     setTimeout(() => {
         $dadoPantalla.setAttribute("src", `img/escalera.png`);
+    }, 150);
+    setTimeout(() => {
+        $dadoPantalla.setAttribute("src", `img/star-yellow.png`);
     }, 300);
     setTimeout(() => {
-        $dadoPantalla.setAttribute("src", `img/star-yellow.png`);
-    }, 600);
-    setTimeout(() => {
         $dadoPantalla.setAttribute("src", `img/signo-pregunta.png`);
-    }, 900);
+    }, 450);
     setTimeout(() => {
         $dadoPantalla.setAttribute("src", `img/snake.png`);
-    }, 1200);
+    }, 600);
     setTimeout(() => {
         $dadoPantalla.setAttribute("src", `img/escalera.png`);
-    }, 1500);
+    }, 750);
     setTimeout(() => {
         $dadoPantalla.setAttribute("src", `img/star-yellow.png`);
-    }, 1800);
+    }, 900);
     setTimeout(() => {
         $dadoPantalla.setAttribute("src", `img/signo-pregunta.png`);
-    }, 2100);
+    }, 1050);
     setTimeout(() => {
         $dadoPantalla.setAttribute("src", `img/${valorDado}.png`);
-    }, 2400);
+    }, 1200);
 
 }
 //casilleros que suben
@@ -168,6 +170,8 @@ const moverFicha = (player, casilleroX, casilleroY) => {
 };
 //conjunto de las fichas para mover la ficha al casillero 
 const moverFichaPosicion = (player) => {
+    /* let posicionXDelCasillero =positionXCasillero(player)
+    let posicionYDelCasillero =positionYCasillero(player) */
     positionXCasillero(player)
     positionYCasillero(player)
     moverFicha(player, posicionXDelCasillero, posicionYDelCasillero)
@@ -179,9 +183,9 @@ const turnoActual = (elemento, pixeles = 1, color, size) => {
     elemento.style.transform = `scale(${size})`
 };
 //Pinta en pantalla al gandor
-const mostrarGanador =(player)=>{
+const mostrarGanador = (player) => {
     if (player.casillero == 100) {
-        $ganadorMensaje.textContent= `felicidades ganador ${player.name}!!!`
+        $ganadorMensaje.textContent = `felicidades por ganar ${player.name}!!!`
         $ganador.style.zIndex = "99999";
         $ganador.style.transform = "scale(1.3)";
     }
@@ -193,68 +197,80 @@ const agregarClase = (elemento, clase) => {
 
 
 /* funciones que ejecuta el player 1 */
-const juegaPlayer1 = () => {
-    turnoActual($nombreJugador1, 3, 'rgba(255, 0, 0, 0.192)', 1.3)
 
+const juegaPlayer1 = () => {
+    //le saca el evento click para que no pueda seguir tirando
+    $dado.removeEventListener('click', juegaPlayer1)
+    //dibuja en pantalla de quien es el turno
+    turnoActual($nombreJugador1, 3, 'rgba(255, 0, 0, 0.192)', 1.3)
     dado()
     casilleroProximo(player1, valorDado)
     pantallaAleatoria()
     setTimeout(() => {
         moverFichaPosicion(player1)
+        //Se fija si son casilleros con serpientes o escaleras
         let casilleroSubida = casillerosSuben(player1)
         let casillerosQueBajan = casillerosBajan(player1)
         if (player1.casillero === casilleroSubida || player1.casillero === casillerosQueBajan) {
             setTimeout(() => {
                 moverFichaPosicion(player1)
-            }, 2000)
+            }, 1300)
         }
+        //cambia el turno de los jugadores
         player1.turno = false;
         player2.turno = true;
-        $dado.removeEventListener('click', juegaPlayer1)
-        $dado.addEventListener('click', juegaPlayer2)
-    }, 2500);
+    }, 1300);
+    //Cuando termina la transicion de movimiento de la ficha
     $ficha1.addEventListener("transitionend", () => {
+        //otorga el evento click al siguiente jugador
+        $dado.addEventListener('click', juegaPlayer2)
         turnoActual($nombreJugador2, 3, 'rgba(21, 255, 0, 0.192)', 1.3)
         turnoActual($nombreJugador1, 0, 'rgba(255, 255, 255, 0)', 0.8)
         mostrarGanador(player1)
     });
-}
+} 
 /* funciones que ejecuta el player 2 */
 const juegaPlayer2 = () => {
+    //le saca el evento click para que no pueda seguir tirando
+    $dado.removeEventListener('click', juegaPlayer2)
     dado()
     casilleroProximo(player2, valorDado)
     pantallaAleatoria()
     setTimeout(() => {
         moverFichaPosicion(player2)
+        //Se fija si son casilleros con serpientes o escaleras
         let casilleroSubida = casillerosSuben(player2)
         let casillerosQueBajan = casillerosBajan(player2)
         if (player2.casillero === casilleroSubida || player2.casillero === casillerosQueBajan) {
             setTimeout(() => {
                 moverFichaPosicion(player2)
-            }, 2000)
+            }, 1300)
         }
-        $ficha2.addEventListener("transitionend", () => {
-            turnoActual($nombreJugador1, 3, 'rgba(255, 0, 0, 0.192)', 1.3)
-            turnoActual($nombreJugador2, 0, 'rgba(255, 255, 255, 0)', .8)
-            mostrarGanador(player2)
-        });
+        //cambia el turno de los jugadores
         player2.turno = false;
         player1.turno = true;
-        $dado.removeEventListener('click', juegaPlayer2)
+    }, 1300);
+    //Cuando termina la transicion de movimiento de la ficha
+    $ficha2.addEventListener("transitionend", () => {
+        //otorga el evento click al siguiente jugador
         $dado.addEventListener('click', juegaPlayer1)
-    }, 2500);
+        turnoActual($nombreJugador1, 3, 'rgba(255, 0, 0, 0.192)', 1.3)
+        turnoActual($nombreJugador2, 0, 'rgba(255, 255, 255, 0)', .8)
+        mostrarGanador(player2)
+    });
 }
 /* EMPIEZA EJECUCION DE FUNCIONES */
 $dado.addEventListener('click', juegaPlayer1)
-$btnReglas.addEventListener('click', ()=>{
+//Abre ventana de reglas
+$btnReglas.addEventListener('click', () => {
     $reglasVentana.style.display = 'block'
 })
-$btnReglasVentana.addEventListener('click', ()=>{
+//Cierra ventana de reglas
+$btnReglasVentana.addEventListener('click', () => {
     $reglasVentana.style.display = 'none'
 })
 window.onload = function () {
     pedirNombre();
-
 }
 
 
